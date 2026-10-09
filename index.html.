@@ -1,57 +1,107 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DramaBox VF</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #10121b;
-      color: white;
-    }
-    header {
-      background: #171b2b;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      color: #00e5ff;
-      margin: 0;
-    }
-    .search {
-      width: 85%;
-      padding: 12px;
-      margin-top: 15px;
-      border-radius: 8px;
-      border: none;
-    }
-    main {
-      padding: 20px;
-      text-align: center;
-    }
-    .empty {
-      background: #1b2030;
-      padding: 25px;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DramaBox VF</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #10101b;
+    color: white;
+}
+
+header {
+    background: #19192a;
+    padding: 20px 15px;
+    text-align: center;
+    border-bottom: 2px solid #7957ff;
+}
+
+header h1 {
+    margin: 0;
+    color: #a58bff;
+    font-size: 28px;
+}
+
+header p {
+    margin-bottom: 0;
+    color: #ddd;
+}
+
+main {
+    padding: 20px 15px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    color: #a58bff;
+}
+
+.search {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background: #202033;
+    color: white;
+    font-size: 16px;
+}
+
+.empty {
+    margin-top: 20px;
+    padding: 25px 15px;
+    background: #19192a;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    font-size: 13px;
+}
+</style>
 </head>
+
 <body>
-  <header>
+
+<header>
     <h1>🎬 DramaBox VF</h1>
-    <p>Les meilleurs dramas chinois en français</p>
-    <input class="search" type="search"
-      placeholder="Rechercher un drama...">
-  </header>
-  <main>
-    <h2>Nos dramas</h2>
-    <div class="empty">
-      <p>Aucun drama pour le moment.</p>
-      <p>Les nouveaux dramas apparaîtront ici.</p>
-    </div>
-  </main>
+    <p>Vos dramas chinois en version française</p>
+</header>
+
+<main>
+    <h2>Découvrir les dramas</h2>
+
+    <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="🔎 Rechercher un drama..."
+        aria-label="Rechercher un drama"
+    >
+
+    <section class="empty" id="catalogue">
+        <h3>Bienvenue sur DramaBox VF !</h3>
+        <p>Retrouvez ici vos films et dramas chinois en version française.</p>
+        <p>🎥 Le catalogue vidéo sera ajouté prochainement.</p>
+    </section>
+</main>
+
+<footer>
+    DramaBox VF © 2026
+</footer>
+
 </body>
 </html>
