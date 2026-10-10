@@ -1,75 +1,269 @@
 
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DramaBox VF</title>
+<meta name="theme-color" content="#100d20">
+<title>DramaBox VF - Dramas chinois</title>
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #10101b;
-    color: white;
+  background: #100d20;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 header {
-    background: #19192a;
-    padding: 20px 15px;
-    text-align: center;
-    border-bottom: 2px solid #7957ff;
+  background: #19132b;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-bottom: 1px solid #35245b;
 }
 
-header h1 {
-    margin: 0;
-    color: #a58bff;
-    font-size: 28px;
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #bd9aff;
 }
 
-header p {
-    margin-bottom: 0;
-    color: #ddd;
+.logo span {
+  color: white;
 }
 
-main {
-    padding: 20px 15px;
-    max-width: 900px;
-    margin: auto;
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
-h2 {
-    color: #a58bff;
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #bd9aff;
+}
+
+.hero {
+  padding: 65px 7%;
+  background: linear-gradient(120deg, #29164e, #5d32a5, #17102b);
+}
+
+.hero .tag {
+  color: #d8c5ff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 6vw, 48px);
+  max-width: 650px;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  color: #e0d8ee;
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 20px;
+  background: #a875ff;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #8b54ed;
+}
+
+.catalogue {
+  padding: 35px 5%;
+}
+
+.section-title {
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #a9a1b9;
+  font-size: 14px;
+  margin-bottom: 22px;
 }
 
 .search {
-    width: 100%;
-    padding: 13px;
-    border-radius: 8px;
-    border: 1px solid #555;
-    background: #202033;
-    color: white;
-    font-size: 16px;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 28px;
+  border-radius: 9px;
+  border: 1px solid #413456;
+  background: #1b162b;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.search:focus {
+  border-color: #a875ff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  overflow: hidden;
+  background: #1b162b;
+  border: 1px solid #302542;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.poster {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  background: linear-gradient(145deg, #5835a0, #19132b);
+  font-size: 20px;
+  font-weight: bold;
+  color: #eee3ff;
+}
+
+.card:nth-child(2n) .poster {
+  background: linear-gradient(145deg, #174c61, #19132b);
+}
+
+.card:nth-child(3n) .poster {
+  background: linear-gradient(145deg, #793d69, #19132b);
+}
+
+.card-info {
+  padding: 12px;
+}
+
+.card h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.card p {
+  color: #aaa1bb;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.watch {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 5px;
+  color: white;
+  background: #673bb2;
+  cursor: pointer;
+}
+
+.watch:hover {
+  background: #8655d5;
 }
 
 .empty {
-    margin-top: 20px;
-    padding: 25px 15px;
-    background: #19192a;
-    border-radius: 12px;
-    text-align: center;
-    line-height: 1.7;
+  display: none;
+  color: #c8bdd9;
+  padding: 25px 0;
+}
+
+.admin {
+  margin: 10px 5% 35px;
+  padding: 20px;
+  border: 1px solid #413456;
+  background: #1b162b;
+  border-radius: 12px;
+}
+
+.admin h2 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.admin p {
+  color: #bdb4ca;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+input[type="file"] {
+  max-width: 100%;
+  color: #ddd;
+  margin-bottom: 12px;
+}
+
+#playerBox {
+  display: none;
+  padding: 20px 5%;
+  background: #080710;
+}
+
+#playerTitle {
+  margin-bottom: 14px;
+}
+
+video {
+  width: 100%;
+  max-height: 65vh;
+  background: black;
+  border-radius: 8px;
 }
 
 footer {
-    text-align: center;
-    padding: 20px;
-    color: #aaa;
-    font-size: 13px;
+  padding: 25px 15px;
+  text-align: center;
+  color: #9288a4;
+  background: #19132b;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .poster {
+    height: 240px;
+  }
 }
 </style>
 </head>
@@ -77,31 +271,164 @@ footer {
 <body>
 
 <header>
-    <h1>🎬 DramaBox VF</h1>
-    <p>Vos dramas chinois en version française</p>
+  <div class="logo">DramaBox <span>VF</span></div>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#dramas">Dramas</a>
+    <a href="#films">Films</a>
+    <a href="#administration">Ajouter une vidéo</a>
+  </nav>
 </header>
 
-<main>
-    <h2>Découvrir les dramas</h2>
+<section class="hero" id="accueil">
+  <p class="tag">VOTRE UNIVERS DRAMA</p>
+  <h1>Vos histoires préférées, en version française</h1>
+  <p>
+    Découvrez l'univers des dramas chinois : systèmes,
+    revanche, cultivation et héros extraordinaires.
+  </p>
+  <a href="#dramas" class="btn">Découvrir le catalogue ▶</a>
+</section>
 
-    <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="🔎 Rechercher un drama..."
-        aria-label="Rechercher un drama"
-    >
+<main class="catalogue" id="dramas">
+  <h2 class="section-title">🎬 Nos dramas</h2>
+  <p class="subtitle">Dramas chinois en version française</p>
 
-    <section class="empty" id="catalogue">
-        <h3>Bienvenue sur DramaBox VF !</h3>
-        <p>Retrouvez ici vos films et dramas chinois en version française.</p>
-        <p>🎥 Le catalogue vidéo sera ajouté prochainement.</p>
-    </section>
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="🔎 Rechercher un drama..."
+    aria-label="Rechercher un drama"
+  >
+
+  <div class="grid" id="grid">
+
+    <article class="card">
+      <div class="poster">⚡ SYSTÈME</div>
+      <div class="card-info">
+        <h3>Le héros au système mystérieux</h3>
+        <p>Action • Système • VF</p>
+        <button class="watch" onclick="demo()">▶ Regarder</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="poster">👑 REVANCHE</div>
+      <div class="card-info">
+        <h3>Le retour du héros invincible</h3>
+        <p>Revanche • Pouvoir • VF</p>
+        <button class="watch" onclick="demo()">▶ Regarder</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="poster">🐉 CULTIVATION</div>
+      <div class="card-info">
+        <h3>Le maître de la cultivation</h3>
+        <p>Fantastique • Arts martiaux • VF</p>
+        <button class="watch" onclick="demo()">▶ Regarder</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="poster">💎 MILLIARDAIRE</div>
+      <div class="card-info">
+        <h3>Le retour du milliardaire</h3>
+        <p>Richesse • Romance • VF</p>
+        <button class="watch" onclick="demo()">▶ Regarder</button>
+      </div>
+    </article>
+
+  </div>
+
+  <p class="empty" id="empty">Aucun drama trouvé.</p>
 </main>
 
+<section class="catalogue" id="films">
+  <h2 class="section-title">🍿 Films en vedette</h2>
+  <p class="subtitle">
+    Les films seront présentés ici à mesure que le catalogue sera constitué.
+  </p>
+</section>
+
+<section class="admin" id="administration">
+  <h2>📁 Tester une vidéo depuis ton téléphone</h2>
+  <p>
+    Sélectionne un fichier vidéo pour tester le lecteur.
+    Pour le moment, cette lecture est locale : le fichier
+    n'est pas envoyé sur Internet et les visiteurs ne peuvent
+    pas le voir.
+  </p>
+
+  <input
+    id="videoFile"
+    type="file"
+    accept="video/*"
+    aria-label="Choisir une vidéo"
+  >
+
+  <p id="fileStatus">Aucune vidéo sélectionnée.</p>
+</section>
+
+<section id="playerBox">
+  <h2 id="playerTitle">Lecteur vidéo</h2>
+  <video id="player" controls playsinline></video>
+</section>
+
 <footer>
-    DramaBox VF © 2026
+  <p>🎬 DramaBox VF © 2026</p>
+  <p>Dramas chinois en version française</p>
 </footer>
+
+<script>
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const empty = document.getElementById("empty");
+
+search.addEventListener("input", function () {
+  const term = search.value.toLowerCase().trim();
+  let visible = 0;
+
+  cards.forEach(function (card) {
+    const match = card.textContent.toLowerCase().includes(term);
+    card.style.display = match ? "" : "none";
+    if (match) visible++;
+  });
+
+  empty.style.display = visible ? "none" : "block";
+});
+
+function demo() {
+  alert(
+    "Cette carte est une démonstration. " +
+    "Aucun film n'est encore associé à ce titre."
+  );
+}
+
+const videoFile = document.getElementById("videoFile");
+const player = document.getElementById("player");
+const playerBox = document.getElementById("playerBox");
+const playerTitle = document.getElementById("playerTitle");
+const fileStatus = document.getElementById("fileStatus");
+let currentVideoURL = null;
+
+videoFile.addEventListener("change", function () {
+  const file = videoFile.files[0];
+  if (!file) return;
+
+  if (currentVideoURL) {
+    URL.revokeObjectURL(currentVideoURL);
+  }
+
+  currentVideoURL = URL.createObjectURL(file);
+  player.src = currentVideoURL;
+  playerTitle.textContent = file.name;
+  fileStatus.textContent = "Vidéo chargée localement : " + file.name;
+  playerBox.style.display = "block";
+  playerBox.scrollIntoView({ behavior: "smooth" });
+});
+</script>
 
 </body>
 </html>
