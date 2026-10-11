@@ -1,441 +1,567 @@
-vu<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#100d20">
-  <title>DramaBox VF — Dramas chinois</title>
+  <title>DRAMASBOX-VF — Dramas chinois en français</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
+    :root {
+      --bg: #100d20;
+      --card: #191430;
+      --card2: #221a3d;
+      --violet: #7c3aed;
+      --rose: #ec4899;
+      --text: #ffffff;
+      --muted: #b9b3d1;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background: #100d20;
-      color: #ffffff;
+      background: var(--bg);
+      color: var(--text);
       font-family: Arial, sans-serif;
+      min-height: 100vh;
     }
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(16, 13, 32, 0.95);
+      border-bottom: 1px solid #2c2348;
+      padding: 14px 16px;
+    }
+
+    .top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
-      padding: 18px 5%;
-      background: #19132b;
-      border-bottom: 1px solid #35245b;
+      gap: 10px;
+      max-width: 1100px;
+      margin: auto;
     }
 
     .logo {
-      color: #bd9aff;
-      font-size: 24px;
+      font-size: 21px;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo i {
+      color: var(--rose);
     }
 
     .logo span {
-      color: #ffffff;
+      color: var(--rose);
     }
 
-    nav {
+    .menu {
       display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
     }
 
-    nav a {
-      color: #ddd;
-      font-size: 14px;
+    .menu a {
+      color: var(--muted);
       text-decoration: none;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      border: 1px solid transparent;
     }
 
-    nav a:hover {
-      color: #bd9aff;
+    .menu a.active,
+    .menu a:hover {
+      color: white;
+      background: var(--card2);
+      border-color: var(--violet);
     }
 
     .hero {
-      padding: 65px 7%;
-      background: linear-gradient(120deg, #29164e, #5d32a5, #17102b);
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 16px;
     }
 
-    .tag {
-      margin-bottom: 15px;
-      color: #d8c5ff;
-      font-size: 12px;
-      letter-spacing: 2px;
+    .hero-box {
+      background: linear-gradient(135deg, #2a1c50, #4c1d95);
+      border: 1px solid #5b21b6;
+      border-radius: 20px;
+      padding: 26px 20px;
+      text-align: center;
     }
 
-    .hero h1 {
-      max-width: 650px;
+    .hero-box h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .hero-box p {
+      color: #e5e0f7;
+      font-size: 15px;
       margin-bottom: 18px;
-      font-size: clamp(30px, 6vw, 48px);
-      line-height: 1.15;
-    }
-
-    .hero p {
-      max-width: 500px;
-      margin-bottom: 25px;
-      color: #e0d8ee;
-      line-height: 1.7;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 20px;
-      border-radius: 8px;
-      background: #a875ff;
-      color: #ffffff;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background: #8b54ed;
-    }
-
-    .catalogue {
-      padding: 35px 5%;
-    }
-
-    .section-title {
-      margin-bottom: 8px;
-      font-size: 23px;
-    }
-
-    .subtitle {
-      margin-bottom: 22px;
-      color: #a9a1b9;
-      font-size: 14px;
     }
 
     .search {
-      width: 100%;
-      margin-bottom: 28px;
-      padding: 14px;
-      border: 1px solid #413456;
-      border-radius: 9px;
-      outline: none;
-      background: #1b162b;
-      color: #ffffff;
-      font-size: 16px;
+      display: flex;
+      gap: 8px;
+      max-width: 520px;
+      margin: auto;
     }
 
-    .search:focus {
-      border-color: #a875ff;
+    .search input {
+      flex: 1;
+      padding: 13px 15px;
+      border-radius: 12px;
+      border: 1px solid #6d28d9;
+      background: #150f2b;
+      color: white;
+      font-size: 15px;
+    }
+
+    .search button {
+      padding: 13px 16px;
+      border: none;
+      border-radius: 12px;
+      background: var(--rose);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 16px 90px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 22px 0 14px;
+      font-size: 19px;
+    }
+
+    .section-title i {
+      color: var(--rose);
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .cat {
+      background: var(--card);
+      border: 1px solid #2f254f;
+      color: var(--muted);
+      padding: 9px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .cat.active {
+      background: var(--violet);
+      border-color: var(--violet);
+      color: white;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
       gap: 14px;
+      margin-top: 16px;
     }
 
     .card {
+      background: var(--card);
+      border: 1px solid #2f254f;
+      border-radius: 16px;
       overflow: hidden;
-      min-width: 0;
-      border: 1px solid #302542;
-      border-radius: 12px;
-      background: #1b162b;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--violet);
     }
 
     .poster {
+      height: 190px;
+      background: linear-gradient(135deg, #312e81, #831843);
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 180px;
-      padding: 12px;
-      background: linear-gradient(145deg, #5835a0, #19132b);
-      color: #eee3ff;
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
+      font-size: 34px;
+      color: #f9a8d4;
     }
 
-    .card:nth-child(2n) .poster {
-      background: linear-gradient(145deg, #174c61, #19132b);
-    }
-
-    .card:nth-child(3n) .poster {
-      background: linear-gradient(145deg, #793d69, #19132b);
-    }
-
-    .card-info {
+    .card-body {
       padding: 12px;
     }
 
-    .card h3 {
-      margin-bottom: 8px;
+    .card-body h3 {
       font-size: 15px;
-      line-height: 1.4;
+      margin-bottom: 5px;
     }
 
-    .card p {
-      margin-bottom: 12px;
-      color: #aaa1bb;
+    .card-body p {
+      color: var(--muted);
       font-size: 12px;
+      margin-bottom: 10px;
     }
 
     .watch {
       width: 100%;
-      padding: 10px 5px;
+      padding: 10px;
       border: none;
-      border-radius: 6px;
-      background: #673bb2;
-      color: #ffffff;
+      border-radius: 10px;
+      background: var(--violet);
+      color: white;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    .watch:hover {
-      background: #8655d5;
-    }
-
-    .empty {
-      display: none;
-      padding: 25px 0;
-      color: #c8bdd9;
-    }
-
     .admin {
-      margin: 10px 5% 35px;
+      background: var(--card);
+      border: 1px dashed var(--violet);
+      border-radius: 18px;
       padding: 20px;
-      border: 1px solid #413456;
-      border-radius: 12px;
-      background: #1b162b;
+      text-align: center;
+      margin-top: 30px;
     }
 
     .admin h2 {
-      margin-bottom: 10px;
       font-size: 19px;
+      margin-bottom: 8px;
     }
 
     .admin p {
+      color: var(--muted);
+      font-size: 14px;
       margin-bottom: 15px;
-      color: #bdb4ca;
-      font-size: 13px;
-      line-height: 1.6;
     }
 
-    input[type="file"] {
-      max-width: 100%;
-      margin-bottom: 12px;
-      color: #ddd;
-    }
-
-    #playerBox {
-      display: none;
-      padding: 20px 5%;
-      background: #080710;
-    }
-
-    #playerTitle {
-      margin-bottom: 14px;
-    }
-
-    video {
+    .admin-input {
       width: 100%;
-      max-height: 65vh;
-      border-radius: 8px;
-      background: #000000;
+      max-width: 320px;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid #6d28d9;
+      background: #150f2b;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .admin-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--rose);
+      color: white;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout-button {
+      background: #4b5563;
+      margin-left: 8px;
+    }
+
+    .player {
+      display: none;
+      margin-top: 20px;
+      background: var(--card);
+      border: 1px solid var(--violet);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .player video {
+      width: 100%;
+      border-radius: 12px;
+      background: black;
+    }
+
+    .player-title {
+      margin-bottom: 10px;
+      font-weight: bold;
     }
 
     footer {
-      padding: 25px 15px;
-      background: #19132b;
-      color: #9288a4;
-      font-size: 12px;
-      line-height: 1.8;
+      border-top: 1px solid #2c2348;
+      padding: 20px 16px 90px;
       text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #150f2b;
+      border-top: 1px solid #2c2348;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 4px;
+      z-index: 20;
+    }
+
+    .bottom-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bottom-nav a i {
+      font-size: 18px;
+    }
+
+    .bottom-nav a.active {
+      color: var(--rose);
     }
 
     @media (min-width: 700px) {
-      .grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 20px;
+      .bottom-nav {
+        display: none;
       }
 
-      .poster {
-        height: 240px;
+      footer {
+        padding-bottom: 20px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">DramaBox <span>VF</span></div>
 
-    <nav>
-      <a href="#accueil">Accueil</a>
-      <a href="#dramas">Dramas</a>
-      <a href="#films">Films</a>
-      <a href="#administration">Ajouter une vidéo</a>
-    </nav>
-  </header>
+<header>
+  <div class="top">
+    <div class="logo">
+      <i class="fa-solid fa-clapperboard"></i>
+      DRAMAS <span>BOX VF</span>
+    </div>
+  </div>
 
-  <section class="hero" id="accueil">
-    <p class="tag">VOTRE UNIVERS DRAMA</p>
+  <nav class="menu">
+    <a href="#" class="active"><i class="fa-solid fa-house"></i> Accueil</a>
+    <a href="#dramas"><i class="fa-solid fa-tv"></i> Dramas</a>
+    <a href="#animes"><i class="fa-solid fa-dragon"></i> Animés</a>
+    <a href="#films"><i class="fa-solid fa-film"></i> Films</a>
+    <a href="#recherche"><i class="fa-solid fa-magnifying-glass"></i> Recherche</a>
+  </nav>
+</header>
 
-    <h1>Vos histoires préférées, en version française</h1>
+<section class="hero" id="recherche">
+  <div class="hero-box">
+    <h1><i class="fa-solid fa-play"></i> Regardez vos dramas en VF</h1>
+    <p>Dramas chinois, animés et films — bientôt disponibles sur DRAMASBOX-VF.</p>
 
-    <p>
-      Découvrez l’univers des dramas chinois : systèmes, revanche,
-      cultivation et héros extraordinaires.
-    </p>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Rechercher un drama, animé ou film...">
+      <button onclick="searchContent()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+  </div>
+</section>
 
-    <a href="#dramas" class="btn">Découvrir le catalogue ▶</a>
-  </section>
+<main class="container">
 
-  <main class="catalogue" id="dramas">
-    <h2 class="section-title">🎬 Nos dramas</h2>
-    <p class="subtitle">Dramas chinois en version française</p>
+  <h2 class="section-title" id="dramas">
+    <i class="fa-solid fa-fire"></i> Dramas populaires
+  </h2>
 
-    <input
-      id="search"
-      class="search"
-      type="search"
-      placeholder="🔎 Rechercher un drama..."
-      aria-label="Rechercher un drama"
-    >
+  <div class="categories">
+    <button class="cat active" onclick="filterCategory('tout', this)">Tout</button>
+    <button class="cat" onclick="filterCategory('drama', this)">Dramas</button>
+    <button class="cat" onclick="filterCategory('anime', this)">Animés</button>
+    <button class="cat" onclick="filterCategory('film', this)">Films</button>
+    <button class="cat" onclick="filterCategory('action', this)">Action</button>
+    <button class="cat" onclick="filterCategory('romance', this)">Romance</button>
+  </div>
 
-    <div class="grid" id="grid">
-      <article class="card">
-        <div class="poster">⚡ SYSTÈME</div>
-        <div class="card-info">
-          <h3>Le héros au système mystérieux</h3>
-          <p>Action • Système • VF</p>
-          <button class="watch" onclick="demo()">▶ Regarder</button>
-        </div>
-      </article>
+  <div class="grid" id="grid">
 
-      <article class="card">
-        <div class="poster">👑 REVANCHE</div>
-        <div class="card-info">
-          <h3>Le retour du héros invincible</h3>
-          <p>Revanche • Pouvoir • VF</p>
-          <button class="watch" onclick="demo()">▶ Regarder</button>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="poster">🐉 CULTIVATION</div>
-        <div class="card-info">
-          <h3>Le maître de la cultivation</h3>
-          <p>Fantastique • Arts martiaux • VF</p>
-          <button class="watch" onclick="demo()">▶ Regarder</button>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="poster">💎 MILLIARDAIRE</div>
-        <div class="card-info">
-          <h3>Le retour du milliardaire</h3>
-          <p>Richesse • Romance • VF</p>
-          <a class="watch" href="https://youtu.be/-TWyaL6kUk0?si=LGQvhUUxh2NHKqL3" target="_blank" rel="noopener">
-  ▶ Regarder
-          </a>
-        </div>
-      </article>
+    <div class="card" data-type="drama action" data-title="Le héros au système mystérieux">
+      <div class="poster"><i class="fa-solid fa-bolt"></i></div>
+      <div class="card-body">
+        <h3>Le héros au système mystérieux</h3>
+        <p>Action • Système • VF</p>
+        <button class="watch" onclick="openVideo('Le héros au système mystérieux')">▶ Regarder</button>
+      </div>
     </div>
 
-    <p class="empty" id="empty">Aucun drama trouvé.</p>
-  </main>
+    <div class="card" data-type="drama romance" data-title="L’amour sous la pluie">
+      <div class="poster"><i class="fa-solid fa-heart"></i></div>
+      <div class="card-body">
+        <h3>L’amour sous la pluie</h3>
+        <p>Romance • Drame • VF</p>
+        <button class="watch" onclick="openVideo('L’amour sous la pluie')">▶ Regarder</button>
+      </div>
+    </div>
 
-  <section class="catalogue" id="films">
-    <h2 class="section-title">🍿 Films en vedette</h2>
-    <p class="subtitle">
-      Les films seront présentés ici à mesure que le catalogue sera constitué.
-    </p>
+    <div class="card" data-type="anime action" data-title="Le guerrier légendaire">
+      <div class="poster"><i class="fa-solid fa-dragon"></i></div>
+      <div class="card-body">
+        <h3>Le guerrier légendaire</h3>
+        <p>Action • Animé • VF</p>
+        <button class="watch" onclick="openVideo('Le guerrier légendaire')">▶ Regarder</button>
+      </div>
+    </div>
+
+    <div class="card" data-type="film action" data-title="Mission secrète">
+      <div class="poster"><i class="fa-solid fa-gun"></i></div>
+      <div class="card-body">
+        <h3>Mission secrète</h3>
+        <p>Action • Film • VF</p>
+        <button class="watch" onclick="openVideo('Mission secrète')">▶ Regarder</button>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="admin" id="animes">
+    <h2><i class="fa-solid fa-lock"></i> Espace administrateur</h2>
+    <p>Cet espace est réservé à l’administrateur.</p>
+
+    <div id="adminLogin">
+      <input type="password" id="adminPassword" class="admin-input" placeholder="Mot de passe administrateur">
+      <br>
+      <button class="admin-button" onclick="loginAdmin()">
+        <i class="fa-solid fa-right-to-bracket"></i> Se connecter
+      </button>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+      <p>Tu peux maintenant tester une vidéo depuis ton téléphone.</p>
+
+      <input type="file" id="videoFile" accept="video/*" hidden>
+
+      <button class="admin-button" onclick="document.getElementById('videoFile').click()">
+        <i class="fa-solid fa-circle-plus"></i> Ajouter une vidéo
+      </button>
+
+      <button class="admin-button logout-button" onclick="logoutAdmin()">
+        <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+      </button>
+
+      <div class="player" id="playerBox">
+        <div class="player-title" id="playerTitle"></div>
+        <video id="videoPlayer" controls></video>
+      </div>
+    </div>
   </section>
 
-  <section class="admin" id="administration">
-    <h2>📁 Tester une vidéo depuis ton téléphone</h2>
+  <section id="films"></section>
 
-    <p>
-      Sélectionne un fichier vidéo pour tester le lecteur. Pour le moment,
-      cette lecture est locale : le fichier n’est pas envoyé sur Internet et
-      les visiteurs ne peuvent pas le voir.
-    </p>
+</main>
 
-    <input
-      id="videoFile"
-      type="file"
-      accept="video/*"
-      aria-label="Choisir une vidéo"
-    >
+<footer>
+  DRAMASBOX-VF — Dramas chinois, animés et films en version française.
+</footer>
 
-    <p id="fileStatus">Aucune vidéo sélectionnée.</p>
-  </section>
+<nav class="bottom-nav">
+  <a href="#" class="active"><i class="fa-solid fa-house"></i>Accueil</a>
+  <a href="#dramas"><i class="fa-solid fa-tv"></i>Dramas</a>
+  <a href="#animes"><i class="fa-solid fa-dragon"></i>Animés</a>
+  <a href="#films"><i class="fa-solid fa-film"></i>Films</a>
+  <a href="#recherche"><i class="fa-solid fa-magnifying-glass"></i>Recherche</a>
+</nav>
 
-  <section id="playerBox">
-    <h2 id="playerTitle">Lecteur vidéo</h2>
-    <video id="player" controls playsinline></video>
-  </section>
+<script>
+  const ADMIN_PASSWORD = "DramasBox2026";
 
-  <footer>
-    <p>🎬 DramaBox VF © 2026</p>
-    <p>Dramas chinois en version française</p>
-  </footer>
-
-  <script>
-    const search = document.getElementById("search");
+  function searchContent() {
+    const value = document.getElementById("searchInput").value.toLowerCase();
     const cards = document.querySelectorAll(".card");
-    const empty = document.getElementById("empty");
 
-    search.addEventListener("input", function () {
-      const term = search.value.toLowerCase().trim();
-      let visible = 0;
-
-      cards.forEach(function (card) {
-        const match = card.textContent.toLowerCase().includes(term);
-        card.style.display = match ? "" : "none";
-
-        if (match) {
-          visible++;
-        }
-      });
-
-      empty.style.display = visible ? "none" : "block";
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      card.style.display = title.includes(value) ? "block" : "none";
     });
+  }
 
-    function demo() {
-      alert(
-        "Cette carte est une démonstration. Aucun film n’est encore associé à ce titre."
-      );
+  document.getElementById("searchInput").addEventListener("keyup", searchContent);
+
+  function filterCategory(category, button) {
+    document.querySelectorAll(".cat").forEach(cat => cat.classList.remove("active"));
+    button.classList.add("active");
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+      if (category === "tout" || card.dataset.type.includes(category)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+  function openVideo(title) {
+    alert("Cette vidéo sera bientôt disponible : " + title);
+  }
+
+  function loginAdmin() {
+    const password = document.getElementById("adminPassword").value;
+
+    if (password === ADMIN_PASSWORD) {
+      document.getElementById("adminLogin").style.display = "none";
+      document.getElementById("adminPanel").style.display = "block";
+      alert("Bienvenue, administrateur !");
+    } else {
+      alert("Mot de passe incorrect.");
     }
+  }
 
-    const videoFile = document.getElementById("videoFile");
-    const player = document.getElementById("player");
-    const playerBox = document.getElementById("playerBox");
-    const playerTitle = document.getElementById("playerTitle");
-    const fileStatus = document.getElementById("fileStatus");
+  function logoutAdmin() {
+    document.getElementById("adminLogin").style.display = "block";
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("adminPassword").value = "";
+    document.getElementById("playerBox").style.display = "none";
+  }
 
-    let currentVideoURL = null;
+  document.getElementById("videoFile").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-    videoFile.addEventListener("change", function () {
-      const file = videoFile.files[0];
+    const video = document.getElementById("videoPlayer");
+    video.src = URL.createObjectURL(file);
 
-      if (!file) {
-        return;
-      }
+    document.getElementById("playerTitle").textContent = "Vidéo chargée : " + file.name;
+    document.getElementById("playerBox").style.display = "block";
+    document.getElementById("playerBox").scrollIntoView({ behavior: "smooth" });
+  });
+</script>
 
-      if (currentVideoURL) {
-        URL.revokeObjectURL(currentVideoURL);
-      }
-
-      currentVideoURL = URL.createObjectURL(file);
-      player.src = currentVideoURL;
-      playerTitle.textContent = file.name;
-      fileStatus.textContent = "Vidéo chargée localement : " + file.name;
-      playerBox.style.display = "block";
-      playerBox.scrollIntoView({ behavior: "smooth" });
-    });
-  </script>
 </body>
-</html>
+  </html>
